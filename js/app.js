@@ -1,21 +1,27 @@
-//get element
+// Get the button element
 let button = document.querySelector('#button');
 
+// Add an event listener to the button
+button.addEventListener('click', function() {
 
-//adding an event listener to the button
-button.addEventListener(`click`, function(){
+  function success(response) {
+    let imageUrl = response.data.message;
+    let imageElement = document.createElement('img');
+    imageElement.src = imageUrl;
+    document.body.appendChild(imageElement);
+  };
+
+  function failure(response) {
+    console.log('Please close the tab and come back 1 hour later');
+
+  }
+
+  // Make an Axios request to an API
+  axios.get('https://dog.ceo/api/breeds/image/random')
+    .then(success)
+    .catch(failure);
+
+}); 
 
 
-    function sucess(response){
-        console.log(`welcome`);
-    document.write('hello there, welcome')
-}
-    function failure(response){
-        console.log(`please close the tab and come back 1 hour later`)
-        document.write('hello there, we ran into some issues,')
-    }
-    //adding an axio to call an API'
-    axios.request({
-        url:  `https://random.dog/24178-5036-5513.jpg`
-    }).then(sucess).catch(failure);
-})
+

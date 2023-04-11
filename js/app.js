@@ -2,7 +2,9 @@
 let button = document.querySelector('#button');
 
 // Add an event listener to the button
-button.addEventListener('click', function() {
+button.addEventListener('click', request);
+
+
 
   function success(response) {
     let imageUrl = response.data.message;
@@ -17,11 +19,11 @@ button.addEventListener('click', function() {
   }
 
   // Make an Axios request to an API
-  axios.get('https://dog.ceo/api/breeds/image/random')
+  function request(details){
+    axios.get('https://dog.ceo/api/breeds/image/random')
     .then(success)
     .catch(failure);
 
-}); 
-
+  };
 
 
